@@ -1,0 +1,22 @@
+/* Сітка для галереї */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Сітка для зображень */
+    gap: 16px;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Для кожного елемента галереї */
+  .li {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+ 
+  .text {
+    font-size: 12px;
+    text-align: left;
+    margin-top: 8px;
+  }

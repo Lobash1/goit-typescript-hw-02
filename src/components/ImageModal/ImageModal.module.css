@@ -1,0 +1,93 @@
+/* ImageModal.module.css */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 9999;
+
+  }
+  
+  .modal {
+    position: relative;
+    background-color: rgb(20, 19, 19);
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+    z-index: 9999;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 200ms ease, transform 200ms ease;
+
+  }
+  
+  .modalContent {
+    max-height: 100%;
+    max-width: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .modalImage {
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 44px;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10000;
+
+  }
+  
+  .closeButton:hover {
+    color: #ff6bcb;
+  }
+
+
+  
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.overlay {
+  opacity: 1;
+  transition: opacity 200ms ease;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}

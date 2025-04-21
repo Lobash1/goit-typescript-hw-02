@@ -1,0 +1,66 @@
+.header {
+  background-color: hsl(300, 50%, 87%);
+  padding: 20px 0;
+
+  
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  
+}
+
+/* .icon {
+  position: absolute;
+  left: 16px;
+  font-size: 20px;
+  color: #777;
+  z-index: 0;
+  pointer-events: none;
+} */
+
+.input {
+  flex: 1;
+  padding: 14px 16px 14px 48px; /* під іконку */
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: transparent;
+  color: #212121;
+}
+
+.input:focus {
+  background-color: #f9f0ff;
+}
+
+.input::placeholder {
+  color: #777;
+}
+
+.button {
+  padding: 14px 24px;
+  background-color: rgb(94, 68, 87);
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 0 8px 8px 0;
+  height: 100%;
+}
+
+.button:hover {
+  background-color: #5b0466;
+}
