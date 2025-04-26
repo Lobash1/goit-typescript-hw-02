@@ -1,30 +1,32 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import css from "./SearchBar.module.css";
 import { toast } from "react-hot-toast";
-// import { BsSearchHeartFill } from "react-icons/bs";
 
-export default function SearchBar({ onSubmit }) {
-  const [search, setSearch] = useState("");
+interface SearchBarProp {
+  onSubmit: (query: string) => void;
+}
 
-  const handleInput = (event) => {
+export default function SearchBar({ onSubmit }: SearchBarProp) {
+  const [search, setSearch] = useState<string>("");
+
+  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!search.trim()) {
       return toast.error("Please enter search term!");
     }
 
-    onSubmit(search);
-    setSearch('');
+    onSubmit(search.trim());
+    setSearch("");
   };
 
   return (
     <header className={css.header}>
       <form onSubmit={handleSubmit} className={css.form}>
-        {/* <BsSearchHeartFill className={css.icon} /> */}
         <input
           value={search}
           onChange={handleInput}

@@ -1,6 +1,5 @@
 import css from "./Loader.module.css";
-import {ClipLoader} from "react-spinners"
-
+import { ClipLoader } from "react-spinners";
 
 export default function Loader() {
   const override = {
@@ -8,16 +7,16 @@ export default function Loader() {
     margin: "0 auto",
     borderColor: "purple",
     animationDuration: "1.5s", // кастомна швидкість
-  }
-    return (
+  };
+  return (
     <div className={css.loader}>
-       <ClipLoader
-        color='rgb(101, 2, 146) '
+      <ClipLoader
+        color="rgb(101, 2, 146) "
         size={40}
         aria-label="Loading Spinner"
         data-testid="loader"
         cssOverride={override}
       />
     </div>
-    )
-  }
+  );
+}

@@ -7,17 +7,25 @@ import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
+import { UnsplashImage } from "../../types";
+
+interface ModalImage {
+  url: string;
+  alt: string;
+}
 
 export default function App() {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [page, setPage] = useState(1);
+  const [images, setImages] = useState<UnsplashImage[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalImage, setModalImage] = useState({ url: "", alt: "" });
-  const [hasMore, setHasMore] = useState(true);
-
+  const [modalImage, setModalImage] = useState<ModalImage>({
+    url: "",
+    alt: "",
+  });
+  const [hasMore, setHasMore] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -25,7 +33,7 @@ export default function App() {
 
       try {
         setLoading(true);
-        setError(false);
+        setError("");
         const response = await fetch(
           `https://api.unsplash.com/search/photos?query=${query}&page=${page}&client_id=-wJ9Fwrs9URX_U_m7C3bAOaKrHUM76jPbw8RfF5po6o`
         );
@@ -37,10 +45,9 @@ export default function App() {
           setHasMore(false);
           toast.success("No more images available");
         } else {
-          setHasMore(true); // ще є зображення
+          setHasMore(true);
         }
-
-      } catch (error) {
+      } catch (error: any) {
         setError(error.message);
         toast.error("Whoops, something went wrong! Please try update page...");
       } finally {
@@ -53,7 +60,7 @@ export default function App() {
     }
   }, [query, page]);
 
-  const handleSearchSubmit = (searchQuery) => {
+  const handleSearchSubmit = (searchQuery: string) => {
     setQuery(searchQuery);
     setPage(1);
     setImages([]);
@@ -64,7 +71,7 @@ export default function App() {
     setPage((prevPage) => prevPage + 1); // Збільшуємо сторінку
   };
 
-  const openModal = (imageUrl, imageAlt) => {
+  const openModal = (imageUrl: string, imageAlt: string) => {
     setModalImage({ url: imageUrl, alt: imageAlt });
     setIsModalOpen(true);
   };
@@ -75,23 +82,23 @@ export default function App() {
 
   return (
     <div className={css.container}>
-      <h1>dz4 HTTP</h1>
       <SearchBar onSubmit={handleSearchSubmit} />
-      {images.length > 0 && <ImageGallery images={images} openModal={openModal} />}
+      {images.length > 0 && (
+        <ImageGallery images={images} openModal={openModal} />
+      )}
       {loading && <Loader />}
       {error && <ErrorMessage message={error} />}
-      
       {images.length > 0 && !loading && hasMore && (
-      <LoadMoreBtn onClick={handleLoadMore} page={page} />
+        <LoadMoreBtn onClick={handleLoadMore} page={page} />
       )}
-     
+
       <ImageModal
         isOpen={isModalOpen}
         onClose={closeModal}
         imageUrl={modalImage.url}
         imageAlt={modalImage.alt}
       />
-     
+
       <Toaster position="top-left" reverseOrder={true} />
     </div>
   );
