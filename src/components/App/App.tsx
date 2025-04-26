@@ -7,7 +7,7 @@ import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
-import { UnsplashImage } from "../../types";
+import { UnsplashImage, UnsplashApiResponse } from "../../types";
 
 interface ModalImage {
   url: string;
@@ -37,7 +37,7 @@ export default function App() {
         const response = await fetch(
           `https://api.unsplash.com/search/photos?query=${query}&page=${page}&client_id=-wJ9Fwrs9URX_U_m7C3bAOaKrHUM76jPbw8RfF5po6o`
         );
-        const data = await response.json();
+        const data: UnsplashApiResponse = await response.json();
 
         setImages((prevImages) => [...prevImages, ...data.results]);
 

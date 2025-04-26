@@ -6,3 +6,9 @@ export interface UnsplashImage {
     regular: string; //modal
   };
 }
+
+export interface UnsplashApiResponse {
+  total: number;
+  total_pages: number;
+  results: UnsplashImage[];
+}
